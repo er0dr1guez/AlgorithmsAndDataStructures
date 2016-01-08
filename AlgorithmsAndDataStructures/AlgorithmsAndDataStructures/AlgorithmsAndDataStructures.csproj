@@ -35,10 +35,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="src\DoublyLinkedList\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Compile Include="src\DoublyLinkedList\DoublyLinkedList.cs" />
+    <Compile Include="src\DoublyLinkedList\DoublyLinkedListNode.cs" />
+    <Compile Include="src\SingleLinkedList\SingleLinkedList.cs" />
     <Compile Include="src\SingleLinkedList\SingleLinkedListNode.cs" />
   </ItemGroup>
   <ItemGroup>
