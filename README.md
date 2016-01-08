@@ -1,5 +1,5 @@
 # AlgorithmsAndDataStructures
-Basic implementations of algorithms and data structures.
+Basic implementations of algorithms and data structures in C#
 
 Algorithms
 ----------
