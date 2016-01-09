@@ -8,8 +8,8 @@ namespace AlgorithmsAndDataStructures.src.SingleLinkedList
     /// A simple single linked list collection implementation
     /// capable of basic operations
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public sealed class SingleLinkedList<T> : System.Collections.Generic.ICollection<T>
+    /// <typeparam name="T">Type of data it holds</typeparam>
+    public sealed class SingleLinkedList<T> : ICollection<T>
     {
         /// <summary>
         /// The first node in the single linked list;
@@ -27,22 +27,22 @@ namespace AlgorithmsAndDataStructures.src.SingleLinkedList
         /// <summary>
         /// Adds the specified value to the beginning of the single linked list
         /// </summary>
-        /// <param name="value">The value to add at the beginning of the  list</param>
-        public void AddFirst(T value)
-        {
-            AddFirst(new SingleLinkedListNode<T>(value));
-        }
+        /// <param name="value">
+        /// The value to add at the beginning of the single linked list
+        /// </param>
+        public void AddFirst(T value) => AddFirst(new SingleLinkedListNode<T>(value));
 
         /// <summary>
         /// Adds the specified node to the beginning of the single linked list
         /// </summary>
-        /// <param name="value">The node to add at the beginning of the single linked list</param>
+        /// <param name="value">
+        /// The node to add at the beginning of the single linked list
+        /// </param>
         public void AddFirst(SingleLinkedListNode<T> node)
         {
             if (Head == null)
             {
-                Head = node;
-                Tail = node;
+                InsertNodeToEmptyList(node);
             }
             else
             {
@@ -52,13 +52,90 @@ namespace AlgorithmsAndDataStructures.src.SingleLinkedList
             Count++;
         }
 
-        public void AddLast(T value) { } //TODO
-        public void AddLast(SingleLinkedListNode<T> node) { } //TODO
+        /// <summary>
+        /// Adds the specified value to the end of the single linked list
+        /// </summary>
+        /// <param name="value">The value to add to the end of the single linked list</param>
+        public void AddLast(T value) => AddLast(new SingleLinkedListNode<T>(value));
+        
+        /// <summary>
+        /// Adds the specified node to the end of the single linked list
+        /// </summary>
+        /// <param name="node">
+        /// The node to add at the end of the single linked list
+        /// </param>
+        public void AddLast(SingleLinkedListNode<T> node)
+        {
+            if (Head == null)
+            {
+                InsertNodeToEmptyList(node);
+            }
+            else
+            {
+                Tail.Next = node;
+                Tail = node;
+            }
+            Count++;
+        }
+
+        /// <summary>
+        /// Adds the specified node to the empty single linked list
+        /// </summary>
+        /// <param name="node">
+        /// The node to add at to the empty single linked list
+        /// </param>
+        private void InsertNodeToEmptyList(SingleLinkedListNode<T> node)
+        {
+            Head = node;
+            Tail = node;
+        }
         #endregion
 
         #region Remove
-        public void RemoveFirst() { } //TODO
-        public void RemoveLast() { } //TODO
+        /// <summary>
+        /// Removes the first node on the single linked list
+        /// </summary>
+        public void RemoveFirst()
+        {
+            if (Head != null)
+            {
+                Head = Head.Next;
+                Count--;
+
+                // if there was only one node in the single linked list
+                if (Head == null)
+                {
+                    Tail = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Removes the last node on the single linked list
+        /// </summary>
+        public void RemoveLast()
+        {
+            if (Head != null)
+            {
+                // if there is only one node in the single linked list
+                if (Head.Next == null)
+                {
+                    Head = null;
+                    Tail = null;
+                }
+                else
+                {
+                    SingleLinkedListNode<T> current = Head;
+                    while (current.Next != Tail)
+                    {
+                        current = current.Next;
+                    }
+                    Tail = current;
+                    Tail.Next = null;
+                }
+                Count--;
+            }
+        }
         #endregion
 
         #region ICollection
@@ -73,12 +150,12 @@ namespace AlgorithmsAndDataStructures.src.SingleLinkedList
         public bool IsReadOnly => false;
 
         /// <summary>
-        /// Adds the specified value to the beginning of the single linked list
+        /// Adds the specified value to the end of the single linked list
         /// </summary>
         /// <param name="item">The value to add</param>
         public void Add(T item)
         {
-            AddFirst(item);
+            AddLast(item);
         }
 
         /// <summary>
@@ -106,6 +183,7 @@ namespace AlgorithmsAndDataStructures.src.SingleLinkedList
                 {
                     return true;
                 }
+                current = current.Next;
             }
             return false;
         }
@@ -125,19 +203,66 @@ namespace AlgorithmsAndDataStructures.src.SingleLinkedList
             }
         }
 
+        /// <summary>
+        /// Enumerates over the single linked list values from Head to Tail
+        /// </summary>
+        /// <returns>A Head to Tail enumerator</returns>
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            SingleLinkedListNode<T> current = Head;
+            while (current != null)
+            {
+                yield return current.Value;
+                current = current.Next;
+            }
         }
 
+        /// <summary>
+        /// Removes the first occurrence of the item from the list;
+        /// searching from Head to Tail
+        /// </summary>
+        /// <param name="item">The item to remove</param>
+        /// <returns>True if the item was found and removed; false otherwise</returns>
         public bool Remove(T item)
         {
-            throw new NotImplementedException();
+            SingleLinkedListNode<T> current = Head;
+            SingleLinkedListNode<T> previous = null;
+
+            while (current != null)
+            {
+                if (current.Value.Equals(item))
+                {
+                    if (previous != null)
+                    {
+                        previous.Next = current.Next;
+
+                        if (current.Next == null)
+                        {
+                            Tail = previous;
+                        }
+                        Count--;
+                    }
+                    else
+                    {
+                        RemoveFirst();
+                    }
+                    return true;
+                }
+
+                previous = current;
+                current = current.Next;
+            }
+
+            return false;
         }
 
+        /// <summary>
+        /// Enumerates over the single linked list values from Head to Tail
+        /// </summary>
+        /// <returns>A Head to Tail enumerator</returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
         }
         #endregion
     }
