@@ -6,9 +6,13 @@
     /// <typeparam name="T">Type of data it holds</typeparam>
     public class SingleLinkedListNode<T>
     {
+        /// <summary>
+        /// Construct an empty node
+        /// </summary>
         public SingleLinkedListNode()
         {
-
+            Value = default(T);
+            Next = null;
         }
 
         /// <summary>
