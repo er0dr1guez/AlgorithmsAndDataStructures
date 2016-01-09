@@ -8,10 +8,21 @@ namespace AlgorithmsAndDataStructures.Test
     public class SingleLinkedListTest
     {
         [TestMethod]
-        public void DefaultCtorValues()
+        public void AddFirstTest()
         {
-            var node = new LinkedList<int>();
+            var list = new SingleLinkedList<int>();
 
+            //Empty list
+            Assert.AreEqual(list.Head, null);
+            Assert.AreEqual(list.Tail, null);
+
+            //Non Empty list
+            list.AddFirst(3);
+            list.AddFirst(5);
+            list.AddFirst(7);
+
+            Assert.AreEqual(list.Head.Value, 7);
+            Assert.AreEqual(list.Tail.Value, 3);
         }
     }
 }

@@ -24,6 +24,6 @@
         /// Next node in the SingleLinkedList;
         /// null if it is the last node
         /// </summary>
-        public SingleLinkedListNode<T> Next { get; }
+        public SingleLinkedListNode<T> Next { get; set; }
     }
 }

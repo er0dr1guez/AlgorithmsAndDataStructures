@@ -37,6 +37,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Compile Include="Program.cs" />
     <Compile Include="src\DoublyLinkedList\DoublyLinkedList.cs" />
     <Compile Include="src\DoublyLinkedList\DoublyLinkedListNode.cs" />
     <Compile Include="src\SingleLinkedList\SingleLinkedList.cs" />
