@@ -10,9 +10,8 @@ namespace AlgorithmsAndDataStructures.Test
         [TestMethod]
         public void DefaultCtorValues()
         {
-            var node = new LinkedListNode<int>();
-            Assert.AreEqual(node.Value, 0);
-            Assert.AreEqual(node.Next, null);
+            var node = new LinkedList<int>();
+
         }
     }
 }
