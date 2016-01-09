@@ -1,6 +1,7 @@
 ﻿namespace AlgorithmsAndDataStructures.src.SingleLinkedList
 {
-    class SingleLinkedList
+    public class SingleLinkedList<T>
     {
+
     }
 }
