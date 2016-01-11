@@ -21,7 +21,7 @@
         public T Value { get; set; }
 
         /// <summary>
-        /// Next node in the SingleLinkedList;
+        /// The next node in the SingleLinkedList;
         /// null if it is the last node
         /// </summary>
         public SingleLinkedListNode<T> Next { get; set; }

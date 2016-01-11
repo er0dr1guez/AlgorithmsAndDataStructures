@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 
 namespace AlgorithmsAndDataStructures.src.SingleLinkedList
@@ -163,8 +162,15 @@ namespace AlgorithmsAndDataStructures.src.SingleLinkedList
         /// </summary>
         public void Clear()
         {
+            SingleLinkedListNode<T> current = Head;
+            while (current != null)
+            {
+                SingleLinkedListNode<T> temp = current;
+                current = current.Next;
+                temp.Next = null;
+            }
+
             Head = null;
-            Tail = null;
             Count = 0;
         }
 
@@ -218,7 +224,7 @@ namespace AlgorithmsAndDataStructures.src.SingleLinkedList
         }
 
         /// <summary>
-        /// Removes the first occurrence of the item from the list;
+        /// Removes the first occurrence of the item from the single linked list;
         /// searching from Head to Tail
         /// </summary>
         /// <param name="item">The item to remove</param>
@@ -232,7 +238,11 @@ namespace AlgorithmsAndDataStructures.src.SingleLinkedList
             {
                 if (current.Value.Equals(item))
                 {
-                    if (previous != null)
+                    if (previous == null)
+                    {
+                        RemoveFirst();
+                    }
+                    else
                     {
                         previous.Next = current.Next;
 
@@ -241,10 +251,6 @@ namespace AlgorithmsAndDataStructures.src.SingleLinkedList
                             Tail = previous;
                         }
                         Count--;
-                    }
-                    else
-                    {
-                        RemoveFirst();
                     }
                     return true;
                 }

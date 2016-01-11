@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AlgorithmsAndDataStructures.src.SingleLinkedList;
-using System.Collections.Generic;
 
 namespace AlgorithmsAndDataStructures.Test
 {
