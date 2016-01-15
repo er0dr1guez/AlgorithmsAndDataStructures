@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 
 namespace AlgorithmsAndDataStructures.src.DoublyLinkedList
@@ -76,6 +75,30 @@ namespace AlgorithmsAndDataStructures.src.DoublyLinkedList
                 Tail.Next = node;
                 node.Previous = Tail;
                 Tail = node;
+            }
+            Count++;
+        }
+
+        /// <summary>
+        /// Adds the specified item before the current node in the Queue
+        /// </summary>
+        /// <param name="current">The current node in the Queue</param>
+        /// <param name="item">The item to be put in the Queue</param>
+        public void AddBefore(DoublyLinkedListNode<T> current ,T item)
+        {
+            DoublyLinkedListNode<T> newNode = new DoublyLinkedListNode<T>(item);
+            if (current.Previous == null)
+            {
+                newNode.Next = current;
+                current.Previous = newNode;
+                Head = newNode;
+            }
+            else 
+            {
+                newNode.Next = current;
+                newNode.Previous = current.Previous;
+                current.Previous.Next = newNode;
+                current.Previous = newNode;
             }
             Count++;
         }
@@ -238,6 +261,51 @@ namespace AlgorithmsAndDataStructures.src.DoublyLinkedList
             while (current != null)
             {
                 if (current.Value.Equals(item))
+                {
+                    if (previous == null)
+                    {
+                        RemoveFirst();
+                    }
+                    else
+                    {
+                        previous.Next = current.Next;
+
+                        if (current.Next == null)
+                        {
+                            Tail = previous;
+                        }
+                        else
+                        {
+                            current.Next.Previous = previous;
+                        }
+
+                        Count--;
+                    }
+
+                    return true;
+                }
+
+                previous = current;
+                current = current.Next;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Removes the first occurrence of node from the doubly linked list;
+        /// searching from Head to Tail
+        /// </summary>
+        /// <param name="node">The node to remove</param>
+        /// <returns>True if the item was found and removed; false otherwise</returns>
+        public bool Remove(DoublyLinkedListNode<T> node)
+        {
+            DoublyLinkedListNode<T> previous = null;
+            DoublyLinkedListNode<T> current = Head;
+
+            while (current != null)
+            {
+                if (current.Value.Equals(node.Value))
                 {
                     if (previous == null)
                     {

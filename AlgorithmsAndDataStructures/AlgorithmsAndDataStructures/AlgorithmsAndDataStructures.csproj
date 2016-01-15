@@ -37,11 +37,21 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Compile Include="Algorithms\BubbleSort.cs" />
+    <Compile Include="Algorithms\InsertionSort.cs" />
+    <Compile Include="Algorithms\SelectionSort.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="src\DoublyLinkedList\DoublyLinkedList.cs" />
-    <Compile Include="src\DoublyLinkedList\DoublyLinkedListNode.cs" />
-    <Compile Include="src\SingleLinkedList\SingleLinkedList.cs" />
-    <Compile Include="src\SingleLinkedList\SingleLinkedListNode.cs" />
+    <Compile Include="DataStructures\DoublyLinkedList\DoublyLinkedList.cs" />
+    <Compile Include="DataStructures\DoublyLinkedList\DoublyLinkedListNode.cs" />
+    <Compile Include="DataStructures\Queue\PriorityQueue.cs" />
+    <Compile Include="DataStructures\Queue\Queue_Array.cs" />
+    <Compile Include="DataStructures\Queue\Queue_LinkedList.cs" />
+    <Compile Include="DataStructures\SingleLinkedList\SingleLinkedList.cs" />
+    <Compile Include="DataStructures\SingleLinkedList\SingleLinkedListNode.cs" />
+    <Compile Include="DataStructures\Stack\Stack_Array.cs" />
+    <Compile Include="DataStructures\Stack\Stack_LinkedList.cs" />
+    <Compile Include="DataStructures\Tree\BinaryTree.cs" />
+    <Compile Include="DataStructures\Tree\BinaryTreeNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
