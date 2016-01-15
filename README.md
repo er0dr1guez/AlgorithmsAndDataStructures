@@ -4,7 +4,8 @@ Basic implementations of algorithms and data structures in C#
 Algorithms
 ----------
 * BubbleSort
-
+* InsertionSort
+* SelectionSort
 
 Data Structures
 ---------------
@@ -12,3 +13,4 @@ Data Structures
 * DoublyLinkedList
 * Stack
 * Queue
+* Tree
